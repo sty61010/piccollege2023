@@ -181,7 +181,7 @@
 ## How familiar and comfortable you are using technologies like transformers (hence the suggestion to use it)
 
 ---
-## The correctness of your solution
+## The correctness of your solution (Evaluation Metrics)
 - In order to evaluate the performance of generative models, I plot the results to show qualitative results. And I compute the error between the image array and generated image. To ensure the distribution of [x,y,r,g,b], I also compute the mean and standard deviation of the those values.
     - ```python
         print(f'xy mean: {np.mean(xy)}, xy std: {np.std(xy)}, xy max: {np.max(xy)}, xy min: {np.min(xy)}')
@@ -193,8 +193,18 @@
         plt.imshow(generated_image, cmap='gray')
 ---
 ## How well you can explain the problem and your solution
-- The detail of each model is in the "model".ipynb file, please check it to evalute my solutions.
+- The detail of each model is in the PicCollege_HW3_"model".ipynb file, please check it to evalute my solutions.
 ---
 ## How you demonstrate that the output points indeed come from the same distribution as the input points
-
+1. GMM (From same distribution)
+    - I used GMM to fit provided data points and thus the output points are sampled from the same distribution that GMM formulated in.
+2. VAE (From same distribution)
+    - I used VAE to fit provided data points, and use encoder to encode data points to embeddings. Those embeddings come from the specific gaussion distribution. And I used decoder to decode embeddings. During inference time, I directly sample noise from Gaussian distribution and use decoder to decode noise to data points. Thus output points are sampled from the same distribution.
+    - In order to imporve the perfomance, I also used transformer encoder to encode data points and and decode embeddings.
+3. Self-attention
+    - According to the hints, it suggested to use self-attention to generate data points. However, it is unclear the compute the loss function if the input data points are noise vectors. Thus I used GT to compute the loss function and try to generate data points from the same distribution. It finally generated data points from the same distribution when input data points are from the same distribution. But the results are not stable when input data points are noise vectors. The model may be a function that maps data points to same distribution but not generative.
+4. Transformer
+    - Same result as above.
+5. Diffusion model
+    
 ---
