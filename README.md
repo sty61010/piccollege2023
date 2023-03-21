@@ -206,5 +206,6 @@
 4. Transformer
     - Same result as above.
 5. Diffusion model
+    -  I also used diffusion model to fit provided data points, which may iteratively add noise to original data points. The model seems to converge to the mean of each dimension of data points.
     
 ---
